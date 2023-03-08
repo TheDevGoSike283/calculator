@@ -1,8 +1,147 @@
-<html>
-  <head>
-    <title>Hello World</title>
-  </head>
-  <body>
-    <p>Hi</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>My own calculator 🖩</title>
+        <!-- Adding some style --> 
+        <link rel="icon" href="https://img.icons8.com/color/48/000000/apple-calculator.png" />
+        <style>
+        #num1::selection, #num2::selection {
+            color: brown;
+            background-color: pink;
+        }
+        body {
+            background: linear-gradient(blue, orange, yellow, pink, green, red);
+        }
+        h1, h2 {
+            color: red;
+        }
+        [href] {
+            color: rgb(45, 200, 200);}
+        [href]:hover {
+            color: yellow;
+            text-decoration: underline;
+        }
+        [href]:active {
+            color: green;
+        }
+        [href] {
+            text-decoration: none;
+        } p {
+            color: lime;
+        } #calculate {
+            color: brown;
+        }
+        #label-for-mode, h3 {
+            color: yellow;}
+        #label-for-1st-number, #Result {
+            color: orange;}
+        #label-for-2nd-number, #note {
+            color: rgb(121, 222, 84);} 
+        #num1 {
+            background-color: green;
+            color: yellow;}
+        #mode {
+            background-color: yellow;
+            color: orange;
+            text-shadow: 2px 2px 2px;
+        } 
+        #num2 {
+            background-color: orange;
+            color: red;
+        }
+        ::placeholder {
+            color: blue;
+            text-shadow: 2px 2px 2px;
+        }
+        </style>
+    </head>
+    <body>
+    <h1 title="Calculator">Calculator 🖩</h1>
+    <label id="label-for-1st-number">First number:
+    <!-- Input for 1st number -->
+    <textarea id = "num1" placeholder="Type a number" title="Type a number" style="width: 150px; height: 15px">65</textarea>
+    </label>
+    <br>
+    <!-- Input for mode -->
+    <select id="mode" title="Select a mode">
+        <option value="xPlusY">Plus</option>
+        <option value="xMinus">Minus</option>
+        <option value="xTimesY">Times</option>
+        <option value="xDividedByY">Divided By</option>
+        <option value="xPowerY">To the power of</option>
+        <option value="nthRootOfX">th root of</option>
+        <option value="logBOfX">Base num1 log of num2</option>
+        <option value="xModulusY">Modulus</option>
+        <option value="xPercentOfY">% of </option>
+    </select> 
+    <br>
+    <!-- Input for 2nd number -->
+    <label id="label-for-2nd-number">Second number:
+    <textarea id = "num2" placeholder="Type another number" style="width: 157px; height: 15px">32</textarea>
+    </label>
+    <br>
+    <!-- The "Calculate" link -->
+    <a href="javascript:WhenCalculateIsClicked()" id="calculate">Calculate</a>
+    <p>Click the Calculate.</p>
+    <h2>Result:</h2>
+    <!-- The result -->
+    <div id = "Result"></div>
+    <!-- Just a note -->    
+    <h3>Note:</h3>
+    <span id="note">
+    If you want to use Euler's number in a calculation then paste it in here: <a href="https://google.com/search?rlz=1CAJQUA_enUS921&q=e+%3D&stick=H4sIAAAAAAAAAOMwf8RoxC3w8sc9YSnNSWtOXmNU5uJyTsxJLs1JLMkvEhLl4nKtKChKLS7OzM8TYpdi5WJOVbDlWcQKogCeUtK7PQAAAA&sa=X&ved=2ahUKEwiCt-y56KXtAhUvRTABHd2oDgYQ6RMwLXoECBEQAg&biw=1517&bih=750&safe=active&ssui=on">Link</a>
+    </span>
+    <!-- Now the javascript -->
+    <script>
+    var result = document.getElementById("Result")
+    /* Putting the function() {
+        
+    } for when the link is clicked */
+    function WhenCalculateIsClicked() {    
+    var num1 = parseFloat(document.getElementById("num1").value);
+    var mode = document.getElementById("mode").value
+    var num2 = parseFloat(document.getElementById("num2").value);
+    // Just putting a variable for 1 so that I won't have to deal with parseFloat().
+    var one = parseFloat(1)
+    /* function() {
+        
+    } */
+    function convertNumberToPercentToDecimal(number) {
+        return number / 100
+    }
+    
+    // Putting a if statement
+        if (mode == "xPlusY") {
+        // Adding
+        var Result = num1 + num2;
+        } else if (mode == "xMinusY") {
+        // Subtracting
+        var Result = num1 - num2;
+        } else if (mode == "xTimesY") {
+        // Multipling
+        var Result = num1 * num2;
+        } else if (mode == "xDividedByY") {
+        // Dividing
+        var Result = num1 / num2;
+        } else if (mode == "logBOfX") {
+        // The logarithm
+        var Result = Math.log(num2) / Math.log(num1)
+        } else if (mode == "nthRootOfX") {
+        // The nth root
+        var Result = Math.pow(num2, one / num1)
+        } else if (mode == "xPowerY") {
+        // The power
+        var Result = Math.pow(num1, num2)
+        } else if (mode == "xModulusY") {
+        // The modulus
+        var Result = num1 % num2
+        } else if (mode == "xPercentOfY") {
+        // The percentage
+        var Result = num1 * convertNumberToPercentToDecimal(num2)
+        }
+    result.textContent = Result;
+    }
+    </script>
+    </body>
 </html>
